@@ -5,13 +5,8 @@
     {
       "id": "obs_1",
       "type": "sphere",
-      "name": "center_blocker",
-      "center": {
-        "x": 1500,
-        "y": 0,
-        "z": 1800
-      },
-      "radius": 250,
+      "center": { "x": 1500, "y": 0, "z": 1800 },
+      "radius": 300,
       "enabled": true
     }
   ]
