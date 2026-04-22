@@ -1,19 +1,30 @@
 const fk = require("./fk");
-const ik = require("./ik");
+const boxes = require("./link_boxes");
 const hit = require("./collision");
 const reroute = require("./reroute");
 
-const start = [1200,0,1800];
-const end   = [1800,0,1800];
+const joints = [0,-90,90,0,0,0];
 
 const obstacle = {
   center:[1500,0,1800],
   radius:300
 };
 
-if(hit(end, obstacle)){
-  console.log("Blocked");
-  console.log(reroute(start,end,obstacle));
+const tcp = fk(joints);
+const robotBoxes = boxes(joints);
+
+const result = hit(robotBoxes, obstacle);
+
+if(result.collision){
+
+  console.log("Collision at:", result.link);
+
+  console.log(
+    reroute([391,0,3040], tcp, obstacle)
+  );
+
 }else{
-  console.log("Clear");
+
+  console.log("Safe Path");
+  console.log(tcp);
 }
