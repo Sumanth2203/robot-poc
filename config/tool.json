@@ -1,0 +1,16 @@
+{
+  "tool_name": "none",
+  "enabled": false,
+  "tcp_source": "tool0",
+  "tcp_offset_mm": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "tcp_rpy_deg": {
+    "r": 0,
+    "p": 0,
+    "y": 0
+  },
+  "mass_kg": 0
+}
