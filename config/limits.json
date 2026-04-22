@@ -1,0 +1,11 @@
+{
+  "robot_id": "KR120",
+  "joint_limits": [
+    { "joint": "J1", "min": -185, "max": 185 },
+    { "joint": "J2", "min": -155, "max": 35 },
+    { "joint": "J3", "min": -130, "max": 154 },
+    { "joint": "J4", "min": -350, "max": 350 },
+    { "joint": "J5", "min": -130, "max": 130 },
+    { "joint": "J6", "min": -350, "max": 350 }
+  ]
+}
