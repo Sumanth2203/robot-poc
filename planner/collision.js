@@ -6,8 +6,25 @@ function dist(a,b){
   );
 }
 
-function hit(point, obstacle){
-  return dist(point, obstacle.center) < obstacle.radius;
+function check(boxes, obstacle){
+
+  for(const b of boxes){
+
+    const d = dist(b.center, obstacle.center);
+
+    const approx =
+      obstacle.radius +
+      Math.max(...b.size)/2;
+
+    if(d < approx){
+      return {
+        collision:true,
+        link:b.name
+      };
+    }
+  }
+
+  return {collision:false};
 }
 
-module.exports = hit;
+module.exports = check;
