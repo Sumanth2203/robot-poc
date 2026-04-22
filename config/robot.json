@@ -1,0 +1,15 @@
+{
+  "robot_name": "KUKA KR120 R2500 Pro",
+  "robot_id": "KR120",
+  "manufacturer": "KUKA",
+  "reach_mm": 2496,
+  "payload_kg": 120,
+  "axes": 6,
+  "tcp_frame": "tool0",
+  "base_frame": "base_link",
+  "urdf_file": "robot.urdf",
+  "units": {
+    "length": "mm",
+    "angle": "deg"
+  }
+}
