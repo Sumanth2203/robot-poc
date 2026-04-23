@@ -1,42 +1,45 @@
-const robot = require("./urdf_parser");
+```javascript
+const fk = require("./fk");
 
-function deg(r){ return r*180/Math.PI; }
-function rad(d){ return d*Math.PI/180; }
+function dist(a,b){
+  return Math.sqrt(
+    (a[0]-b[0])**2 +
+    (a[1]-b[1])**2 +
+    (a[2]-b[2])**2
+  );
+}
 
 function ik(target){
 
-  const x = target[0];
-  const y = target[1];
-  const z = target[2];
+  let q=[0,-90,90,0,0,0]; // seed
 
-  const g = robot.geometry;
+  const lr=0.6;
+  const delta=0.5;
 
-  const j1 = Math.atan2(y,x);
+  for(let iter=0; iter<250; iter++){
 
-  const r = Math.sqrt(x*x+y*y) - g.xFixed;
-  const s = z - g.baseZ;
+    const p=fk(q);
+    const err=dist(p,target);
 
-  const D =
-    (r*r + s*s - g.L2*g.L2 - g.L3*g.L3) /
-    (2*g.L2*g.L3);
+    if(err < 0.005) return q.map(v=>+v.toFixed(3));
 
-  const Dc = Math.max(-1, Math.min(1,D));
+    for(let j=0;j<6;j++){
 
-  const j3 = Math.acos(Dc);
+      let q2=[...q];
+      q2[j]+=delta;
 
-  const j2 =
-    Math.atan2(s,r) -
-    Math.atan2(
-      g.L3*Math.sin(j3),
-      g.L2 + g.L3*Math.cos(j3)
-    );
+      let p2=fk(q2);
 
-  return [
-    +deg(j1).toFixed(3),
-    +deg(j2).toFixed(3),
-    +deg(j3).toFixed(3),
-    0,0,0
-  ];
+      let grad = (
+        dist(p2,target)-err
+      )/delta;
+
+      q[j]-=lr*grad;
+    }
+  }
+
+  return q.map(v=>+v.toFixed(3));
 }
 
 module.exports = ik;
+```
