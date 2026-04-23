@@ -1,13 +1,32 @@
 {
-  "scene_name": "phase1_demo",
-  "units": "mm",
   "obstacles": [
     {
-      "id": "obs_1",
+      "id": "sphere_obstacle_1",
+      "name": "sphere_obstacle",
       "type": "sphere",
-      "center": { "x": 1500, "y": 0, "z": 1800 },
-      "radius": 300,
-      "enabled": true
+      "category": "obstacle",
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.7
+      },
+      "radius": 0.2,
+      "dimensions": {
+        "diameter": 0.4
+      },
+      "material": {
+        "color": "#ef4444",
+        "roughness": 0.3,
+        "metalness": 0.8
+      },
+      "physics": {
+        "collidable": true,
+        "static": true
+      },
+      "metadata": {
+        "source": "react_three_fiber",
+        "meshName": "sphere_obstacle"
+      }
     }
   ]
 }
